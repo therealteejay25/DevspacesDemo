@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import type { CSSProperties, ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { cn } from "../lib/utils";
 
 type MenuItem = {
   label: string;
@@ -15,7 +16,7 @@ type MenuItem = {
 };
 
 export type BubbleMenuProps = {
-//   logo: ReactNode | string;
+  //   logo: ReactNode | string;
   onMenuClick?: (open: boolean) => void;
   className?: string;
   style?: CSSProperties;
@@ -102,18 +103,17 @@ export default function Navbar({
     .filter(Boolean)
     .join(" ");
 
-    useEffect(() => {
-        if (isMenuOpen) {
-          document.body.style.overflow = "hidden"; // lock scroll
-        } else {
-          document.body.style.overflow = ""; // unlock scroll
-        }
-      
-        return () => {
-          document.body.style.overflow = "";
-        };
-      }, [isMenuOpen]);
-      
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden"; // lock scroll
+    } else {
+      document.body.style.overflow = ""; // unlock scroll
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   const handleToggle = () => {
     const nextState = !isMenuOpen;
@@ -183,7 +183,7 @@ export default function Navbar({
         bubbles.forEach((bubble, i) => {
           const item = menuItems[i];
           if (bubble && item) {
-            const rotation = isDesktop ? (item.rotation ?? 0) : 0;
+            const rotation = isDesktop ? item.rotation ?? 0 : 0;
             gsap.set(bubble, { rotation });
           }
         });
@@ -250,7 +250,7 @@ export default function Navbar({
       `}</style>
 
       <nav
-        className={containerClassName}
+        className={cn(`${containerClassName}`)}
         style={style}
         aria-label="Main navigation"
       >
@@ -344,6 +344,7 @@ export default function Navbar({
             "flex items-center justify-center",
             "pointer-events-none",
             "z-[1000]",
+            "backdrop-blur-sm bg-black/10",
           ].join(" ")}
           aria-hidden={!isMenuOpen}
         >
