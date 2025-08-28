@@ -1,4 +1,5 @@
 "use client";
+import GradientText from './GradientText'
 
 import { cn } from "../lib/utils";
 import { InteractiveGridPattern } from "./InteractiveGridPattern";
@@ -21,6 +22,7 @@ export function InteractiveGridPatternDemo() {
         Code lives here, <br /> community thrives here.
         </h1>
         <p className="w-3xl text-lg font-medium text-gray-500 text-center">DevSpaces is where developers come together to share ideas, collaborate on projects, and grow their skills. Whether you’re building your first app or contributing to open-source, this is your space to learn, connect, and create with like-minded people.</p>
+        <button className='button my-5'>Get Started</button>
       </div>
     </div>
   );

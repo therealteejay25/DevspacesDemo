@@ -102,6 +102,19 @@ export default function Navbar({
     .filter(Boolean)
     .join(" ");
 
+    useEffect(() => {
+        if (isMenuOpen) {
+          document.body.style.overflow = "hidden"; // lock scroll
+        } else {
+          document.body.style.overflow = ""; // unlock scroll
+        }
+      
+        return () => {
+          document.body.style.overflow = "";
+        };
+      }, [isMenuOpen]);
+      
+
   const handleToggle = () => {
     const nextState = !isMenuOpen;
     if (nextState) setShowOverlay(true);
